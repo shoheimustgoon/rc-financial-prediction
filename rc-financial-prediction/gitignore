@@ -1,0 +1,23 @@
+# Production code (not published)
+backtest_gui_ver*.py
+*_production.py
+
+# Data & outputs
+*.xlsx
+*.csv
+*.pickle
+*.pkl
+output/
+results/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp

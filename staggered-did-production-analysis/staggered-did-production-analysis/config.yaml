@@ -1,0 +1,167 @@
+# Staggered DiD Production Analysis - Configuration
+# ==================================================
+
+# Analysis settings
+analysis:
+  # CFR (Constant Failure Rate) classification threshold
+  # Weibull beta within [1-threshold, 1+threshold] is classified as CFR
+  cfr_threshold: 0.15
+  
+  # Minimum sample sizes for analysis
+  min_sample_reliable: 10    # For reliable statistical inference
+  min_sample_moderate: 5     # For moderate confidence
+  min_sample_any: 1          # Minimum for any output
+  
+  # Bathtub curve defaults (production units)
+  default_breakpoints:
+    Oven:
+      dfr_end: 2000
+      cfr_end: 50000
+    Mixer:
+      dfr_end: 1500
+      cfr_end: 40000
+    Proofer:
+      dfr_end: 1800
+      cfr_end: 45000
+    Conveyor:
+      dfr_end: 3000
+      cfr_end: 60000
+    Default:
+      dfr_end: 2000
+      cfr_end: 50000
+
+# Reservoir Computing settings
+reservoir_computing:
+  # Number of reservoir neurons
+  n_reservoir: 100
+  
+  # Spectral radius (controls memory/dynamics balance)
+  # Should be < 1 for stability, typically 0.9-0.99
+  spectral_radius: 0.95
+  
+  # Reservoir sparsity (fraction of non-zero weights)
+  sparsity: 0.1
+  
+  # Noise level for regularization
+  noise: 0.001
+  
+  # Input weight scaling
+  input_scaling: 0.1
+  
+  # Ridge regression regularization
+  ridge: 1.0e-6
+
+# Survival analysis settings
+survival:
+  # Available distributions for AFT models
+  distributions:
+    - weibull
+    - lognormal
+    - loglogistic
+  
+  # L2 penalizer for regularization
+  penalizer: 0.01
+  
+  # Right-censoring handling
+  censoring:
+    # Use last day of max month as observation end
+    use_month_end: true
+
+# DiD analysis settings
+did:
+  # Event study window (relative periods)
+  event_window:
+    pre_periods: -6
+    post_periods: 12
+  
+  # Reference period for event study (typically -1)
+  reference_period: -1
+  
+  # Use clustered standard errors
+  cluster_se: true
+  
+  # Significance level
+  alpha: 0.05
+
+# Visualization settings
+visualization:
+  # Default figure size (inches)
+  figure_size:
+    width: 10
+    height: 6
+  
+  # DPI for saved figures
+  dpi: 150
+  
+  # Color scheme
+  colors:
+    treated: "#1f77b4"  # Blue
+    control: "#ff7f0e"  # Orange
+    dfr: "#ffff00"      # Yellow
+    cfr: "#00ff00"      # Green
+    ifr: "#ff0000"      # Red
+    
+  # Font settings
+  fonts:
+    title_size: 14
+    label_size: 12
+    tick_size: 10
+
+# Output settings
+output:
+  # Include timestamp in output filenames
+  include_timestamp: true
+  
+  # Excel sheet names
+  sheet_names:
+    summary: "Summary"
+    bathtub: "Bathtub_Analysis"
+    survival: "Survival_Data"
+    cox: "Cox_Results"
+    aft: "AFT_Comparison"
+    did: "DiD_Results"
+    twfe: "TWFE_Results"
+    rc: "RC_Imputation"
+  
+  # Log settings
+  logging:
+    level: INFO
+    include_timestamp: true
+
+# Data column mappings
+column_mappings:
+  equipment_id:
+    - Equipment_ID
+    - equipment_id
+    - Machine_ID
+    - Line_Equipment
+  
+  error_datetime:
+    - Error_DateTime
+    - error_datetime
+    - Failure_Date
+    - Timestamp
+  
+  mtbf:
+    - MTBF
+    - mtbf
+    - Mean_Time_Between_Failures
+    - TTF
+  
+  production:
+    - Cumulative_Production
+    - production
+    - Total_Output
+    - Units_Produced
+  
+  event:
+    - Event
+    - event
+    - Failure
+    - Is_Failure
+  
+  line:
+    - Line
+    - line
+    - Production_Line
+    - Area
