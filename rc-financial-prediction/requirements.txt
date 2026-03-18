@@ -1,8 +1,6 @@
-numpy
+-e numpy
 pandas
-matplotlib
-scikit-learn
-reservoirpy
+scipy
 yfinance
 openpyxl
-scipy
+# Optional: reservoirpy

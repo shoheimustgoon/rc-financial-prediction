@@ -1,0 +1,4 @@
+Prediction_Date,Target_Date,Last_Close,Raw_Score,Direction,Confidence,Ticker
+2026-03-17,2026-03-18,2026-03-17,1.2117,UP (Long),100.0%,USDJPY
+2026-03-17,2026-03-18,2026-03-17,0.5388,UP (Long),7.8%,EURUSD
+2026-03-17,2026-03-18,2026-03-17,-0.1961,DOWN (Short),100.0%,N225

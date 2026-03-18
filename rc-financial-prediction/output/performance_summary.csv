@@ -1,0 +1,4 @@
+Ticker,Total_Trades,Correct_Trades,Accuracy,Total_PnL_pips,Max_Drawdown_pips,Sharpe_Ratio,Profit_Factor,Avg_PnL_per_trade,Win_Rate
+USDJPY,220,97,0.4409,-332.6,331.0,-241.138,0.0,-1.51,44.1%
+EURUSD,220,94,0.4273,-333.2,331.6,-242.458,0.0,-1.51,42.7%
+N225,220,109,0.4955,-330.2,328.6,-237.73,0.0,-1.5,49.5%
